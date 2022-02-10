@@ -1,18 +1,12 @@
+const path = require("path");
+
 const express = require("express");
 
 const router = express.Router();
 
-let addProductPage = `
-<body>
-  <form action='/product' method='POST'>
-    <input type='text' name='product'/>
-    <button type='submit'>添加产品</button>
-  </form>
-</body>
- `;
-
+// 访问：http://localhost:3000/admin/add-product测试
 router.get("/add-product", (req, res, next) => {
-  res.send(addProductPage); // 返回html相对于http res.write写法清爽很多
+  res.sendFile(path.join(__dirname, "../views/add-product.html"));
 });
 
 router.post("/product", (req, res, next) => {
