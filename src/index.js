@@ -3,15 +3,18 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const adiminRoutes = require("../routes/admin");
+const adiminRoutesBoj = require("../routes/admin");
 
 const shopRoutes = require("../routes/shop");
 
 const app = express();
 
+app.set("view engine", "ejs");
+app.set("views", "views");
+
 app.use(bodyParser.urlencoded({ extended: false })); //yarn add body-parser
 
-app.use("/admin", adiminRoutes); //测试：http://localhost:3000/admin/add-product
+app.use("/admin", adiminRoutesBoj.routers); //测试：http://localhost:3000/admin/add-product
 
 app.use(shopRoutes);
 app.use(express.static(path.join(__dirname, "..", "public")));
